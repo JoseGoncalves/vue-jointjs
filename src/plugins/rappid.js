@@ -1,6 +1,6 @@
 import 'jointjs/dist/joint.core.css';
 
-import * as joint from 'jointjs';
+import * as joint from 'jointjs/dist/joint.core';
 
 export default {
 	install: function (Vue) {
