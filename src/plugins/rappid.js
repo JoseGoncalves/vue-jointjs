@@ -1,3 +1,5 @@
+import 'jointjs/dist/joint.core.css';
+
 import * as joint from 'jointjs';
 
 export default {
