@@ -37,7 +37,7 @@ export default {
 		this.name = this.$options.name;
 		console.log(`[${this.name}] Created`);
 
-		this.graph = new this.$joint.dia.Graph;
+		this.graph = new this.$joint.dia.Graph({}, { cellNamespace: this.$joint.shapes });
 	},
 
 	mounted() {
@@ -45,6 +45,7 @@ export default {
 
 		new this.$joint.dia.Paper({
 			el: this.$refs.joint,
+			cellViewNamespace: this.$joint.shapes,
 			model: this.graph,
 			width: this.width,
 			height: this.height,
