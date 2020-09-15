@@ -1,6 +1,6 @@
 # vue-jointjs
 
-A Vue.js with JointJS v3 project
+A Vue.js 2 with JointJS v3 project
 
 ## Project setup
 ```sh
