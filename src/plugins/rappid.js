@@ -4,9 +4,10 @@ import { dia } from 'jointjs/src/core.mjs';
 import * as standard from 'jointjs/src/shapes/standard.mjs';
 
 export default {
-	install: function (Vue) {
-		let joint = { dia };
+	install: app => {
+		const joint = { dia };
 		joint.shapes = { standard };
-		Object.defineProperty(Vue.prototype, '$joint', { value: joint });
+		app.config.globalProperties.$joint = joint;
+		app.provide('joint', joint);
 	}
 };

@@ -1,5 +1,5 @@
 <template>
-	<div ref="joint"></div>
+	<div ref="joint" />
 </template>
 
 <script>
@@ -33,6 +33,8 @@ export default {
 		}
 	},
 
+	emits: ['init'],
+
 	created() {
 		this.name = this.$options.name;
 		console.log(`[${this.name}] Created`);
@@ -59,6 +61,3 @@ export default {
 	}
 };
 </script>
-
-<style scoped>
-</style>

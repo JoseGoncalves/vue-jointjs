@@ -1,10 +1,10 @@
-import Vue from 'vue';
-import App from '@/App';
+import { createApp } from 'vue';
+
+import App from '@/App.vue';
 import RappidPlugin from '@/plugins/rappid';
 
-Vue.use(RappidPlugin);
+const app = createApp(App);
 
-new Vue({
-	el: '#app',
-	render: h => h(App)
-});
+app.use(RappidPlugin);
+
+app.mount('#app');
