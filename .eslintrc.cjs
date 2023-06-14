@@ -14,6 +14,7 @@ module.exports = {
 	// https://eslint.org/docs/latest/use/configure/language-options#specifying-environments
 	env: {},
 
+	// https://eslint.org/docs/latest/use/configure/configuration-files#extending-configuration-files
 	// Rules order is important, please avoid shuffling them
 	extends: [
 		// Base ESLint recommended rules
@@ -30,6 +31,7 @@ module.exports = {
 	// https://eslint.org/docs/latest/use/configure/language-options#specifying-globals
 	globals: {},
 
+	// https://eslint.org/docs/latest/use/configure/configuration-files#extending-configuration-files
 	// Add your custom rules here
 	rules: {
 		'indent': ['warn', 'tab'],
