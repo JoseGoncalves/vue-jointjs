@@ -7,7 +7,6 @@ export default {
 	install: app => {
 		const joint = { dia };
 		joint.shapes = { standard };
-		app.config.globalProperties.$joint = joint;
 		app.provide('joint', joint);
 	}
 };

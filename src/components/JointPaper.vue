@@ -1,63 +1,62 @@
 <template>
-	<div ref="joint" />
+	<div ref="jointEl" />
 </template>
 
-<script>
-export default {
-	name: 'JointPaper',
+<script setup>
+console.log('[JointPaper] Created');
 
-	props: {
-		width: {
-			type: [String, Number],
-			default: 800
-		},
-		height: {
-			type: [String, Number],
-			default: 600
-		},
-		gridSize: {
-			type: Number,
-			default: 1
-		},
-		drawGrid: {
-			type: [Object, Boolean],
-			default: false
-		},
-		background: {
-			type: [Object, Boolean],
-			default: false
-		},
-		readonly: {
-			type: Boolean,
-			default: false
-		}
+import { inject, onMounted, ref } from 'vue';
+
+const props = defineProps({
+	width: {
+		type: [String, Number],
+		default: 800
 	},
-
-	emits: ['init'],
-
-	created() {
-		this.name = this.$options.name;
-		console.log(`[${this.name}] Created`);
-
-		this.graph = new this.$joint.dia.Graph({}, { cellNamespace: this.$joint.shapes });
+	height: {
+		type: [String, Number],
+		default: 600
 	},
-
-	mounted() {
-		console.log(`[${this.name}] Mounted:`, this.$refs.joint);
-
-		new this.$joint.dia.Paper({
-			el: this.$refs.joint,
-			cellViewNamespace: this.$joint.shapes,
-			model: this.graph,
-			width: this.width,
-			height: this.height,
-			gridSize: this.gridSize,
-			drawGrid: this.drawGrid,
-			background: this.background,
-			interactive: !this.readonly
-		});
-
-		this.$emit('init', this.graph);
+	gridSize: {
+		type: Number,
+		default: 1
+	},
+	drawGrid: {
+		type: [Object, Boolean],
+		default: false
+	},
+	background: {
+		type: [Object, Boolean],
+		default: false
+	},
+	readonly: {
+		type: Boolean,
+		default: false
 	}
-};
+});
+
+const emit = defineEmits(['init']);
+
+const joint = inject('joint');
+
+const jointEl = ref(null);
+
+const graph = new joint.dia.Graph({}, { cellNamespace: joint.shapes });
+
+onMounted(() => {
+	console.log('[JointPaper] Mounted:', jointEl.value);
+
+	new joint.dia.Paper({
+		el: jointEl.value,
+		cellViewNamespace: joint.shapes,
+		model: graph,
+		width: props.width,
+		height: props.height,
+		gridSize: props.gridSize,
+		drawGrid: props.drawGrid,
+		background: props.background,
+		interactive: !props.readonly
+	});
+
+	emit('init', graph);
+});
 </script>
