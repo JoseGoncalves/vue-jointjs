@@ -8,6 +8,8 @@
 </template>
 
 <script setup>
+console.log('[App] Setup');
+
 import { inject } from 'vue';
 import JointPaper from '@/components/JointPaper.vue';
 
@@ -17,6 +19,8 @@ const gridSize = 10;
 const drawGrid = { name: 'mesh' };
 
 function setupGraph(graph) {
+	console.log('[App] Setup Graph:', graph);
+
 	const rect = new joint.shapes.standard.Rectangle();
 	rect.position(100, 30);
 	rect.resize(100, 40);
