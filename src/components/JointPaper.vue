@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-console.log('[JointPaper] Created');
+console.log('[JointPaper] Setup');
 
 import { inject, onMounted, ref } from 'vue';
 
