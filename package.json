@@ -16,13 +16,13 @@
   },
   "dependencies": {
     "jointjs": "^3.7.7",
-    "vue": "^3.3.10"
+    "vue": "^3.3.13"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^4.5.2",
-    "eslint": "^8.55.0",
+    "@vitejs/plugin-vue": "^5.0.0",
+    "eslint": "^8.56.0",
     "eslint-plugin-vue": "^9.19.2",
     "rimraf": "^5.0.5",
-    "vite": "^5.0.6"
+    "vite": "^5.0.10"
   }
 }
