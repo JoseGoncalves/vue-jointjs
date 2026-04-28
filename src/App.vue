@@ -1,26 +1,17 @@
-<template>
-	<joint-paper
-		:background="background"
-		:grid-size="gridSize"
-		:draw-grid="drawGrid"
-		@init="setupGraph"
-	/>
-</template>
-
 <script setup>
 console.log('[App] Setup');
 
-import { inject } from 'vue';
+import { useJoint } from '@/composables/joint';
 import JointPaper from '@/components/JointPaper.vue';
 
-const joint = inject('joint');
 const background = { color: 'antiquewhite' };
 const gridSize = 10;
 const drawGrid = { name: 'mesh' };
 
-function setupGraph(graph) {
+async function setupGraph(graph) {
 	console.log('[App] Setup Graph:', graph);
 
+	const joint = await useJoint();
 	const rect = new joint.shapes.standard.Rectangle();
 	rect.position(100, 30);
 	rect.resize(100, 40);
@@ -46,3 +37,17 @@ function setupGraph(graph) {
 	link.addTo(graph);
 }
 </script>
+
+<template>
+	<Suspense>
+		<joint-paper
+			:background
+			:grid-size
+			:draw-grid
+			@init="setupGraph"
+		/>
+		<template #fallback>
+			Loading…
+		</template>
+	</Suspense>
+</template>

@@ -1,11 +1,8 @@
-<template>
-	<div ref="jointEl" />
-</template>
-
 <script setup>
 console.log('[JointPaper] Setup');
 
-import { inject, onMounted, ref } from 'vue';
+import { onMounted, onUnmounted, useTemplateRef } from 'vue';
+import { useJoint } from '@/composables/joint';
 
 const props = defineProps({
 	width: {
@@ -36,17 +33,19 @@ const props = defineProps({
 
 const emit = defineEmits(['init']);
 
-const joint = inject('joint');
+const joint = await useJoint();
 
-const jointEl = ref(null);
+const jointRef = useTemplateRef('joint-ref');
 
 const graph = new joint.dia.Graph({}, { cellNamespace: joint.shapes });
 
-onMounted(() => {
-	console.log('[JointPaper] Mounted:', jointEl.value);
+let paper;
 
-	new joint.dia.Paper({
-		el: jointEl.value,
+onMounted(() => {
+	console.log('[JointPaper] Mounted:', jointRef.value);
+
+	paper = new joint.dia.Paper({
+		el: jointRef.value,
 		cellViewNamespace: joint.shapes,
 		model: graph,
 		width: props.width,
@@ -59,4 +58,12 @@ onMounted(() => {
 
 	emit('init', graph);
 });
+
+onUnmounted(() => {
+	paper.remove();
+});
 </script>
+
+<template>
+	<div ref="joint-ref" />
+</template>
